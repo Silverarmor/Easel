@@ -37,7 +37,7 @@ export const formatCalendar = (data: any): any[] => {
         title: `${due ? '~~' : ''}${value.summary.replace(COURSE_MATCH, '') ?? 'Event has no summary'
           }${due ? '~~' : ''}`,
         content: value.description ?? 'Event has no description',
-        url: value.url
+        url: value?.url?.val
       }
     })
 }
