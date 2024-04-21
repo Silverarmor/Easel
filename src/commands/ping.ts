@@ -1,5 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators'
 import { Command, RegisterBehavior } from '@sapphire/framework'
+import { ApplicationCommandType } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
   name: 'ping',

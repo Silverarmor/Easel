@@ -4,7 +4,7 @@ import { Command, RegisterBehavior } from '@sapphire/framework'
 import { fetchCalendar, formatCalendar } from '../lib/serviceAdapters/calendar'
 import { PaginatedMessage } from '@sapphire/discord.js-utilities'
 
-import { EmbedBuilder, PermissionFlagsBits } from 'discord.js'
+import { ApplicationCommandType, EmbedBuilder, PermissionFlagsBits } from 'discord.js'
 import { DATABASE_ACCESS_ERROR, strError, strWarn } from '../lib/constants'
 
 @ApplyOptions<Command.Options>({
