@@ -6,17 +6,21 @@ import { Command, RegisterBehavior } from '@sapphire/framework'
   description: 'Information about Easel'
 })
 export class AboutCommand extends Command {
-  public override registerApplicationCommands (registry: Command.Registry): void {
-    registry.registerChatInputCommand(builder => builder
-      .setName(this.name)
-      .setDescription(this.description),
-    {
-      idHints: ['1063980653164625960'],
-      behaviorWhenNotIdentical: RegisterBehavior.Overwrite
-    })
+  public override registerApplicationCommands(registry: Command.Registry): void {
+    // Register Chat Input command
+    registry.registerChatInputCommand({
+      name: this.name,
+      description: this.description
+    });
+
+    // Register Context Menu command available from any user
+    registry.registerContextMenuCommand({
+      name: this.name,
+      type: ApplicationCommandType.User
+    });
   }
 
-  public async chatInputRun (interaction: Command.ChatInputCommandInteraction): Promise<void> {
+  public async chatInputRun(interaction: Command.ChatInputCommandInteraction): Promise<void> {
     const about = [
       "Easel is a Discord bot that provides a bridge between the University of Auckland's Canvas LMS and Discord.",
       '',

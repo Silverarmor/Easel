@@ -6,17 +6,21 @@ import { Command, RegisterBehavior } from '@sapphire/framework'
   description: "Check Easel's connection to Discord"
 })
 export class PingCommand extends Command {
-  public override registerApplicationCommands (registry: Command.Registry): void {
-    registry.registerChatInputCommand((builder) => builder
-      .setName(this.name)
-      .setDescription(this.description),
-    {
-      idHints: ['797033342818189342'],
-      behaviorWhenNotIdentical: RegisterBehavior.Overwrite
-    })
+  public override registerApplicationCommands(registry: Command.Registry): void {
+    // Register Chat Input command
+    registry.registerChatInputCommand({
+      name: this.name,
+      description: this.description
+    });
+
+    // Register Context Menu command available from any user
+    registry.registerContextMenuCommand({
+      name: this.name,
+      type: ApplicationCommandType.User
+    });
   }
 
-  public async chatInputRun (interaction: Command.ChatInputCommandInteraction): Promise<void> {
+  public async chatInputRun(interaction: Command.ChatInputCommandInteraction): Promise<void> {
     const msg = await interaction.reply({ content: 'Ping?', fetchReply: true })
 
     if (msg.createdTimestamp !== null) {

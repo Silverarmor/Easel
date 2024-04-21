@@ -7,7 +7,7 @@ export default defineConfig({
   tsconfig: 'tsconfig.json',
   target: 'es2020',
   esbuildOptions(options, context) {
-  options.banner = {
+    options.banner = {
       //https://github.com/evanw/esbuild/issues/1921
       js: `
       const require = (await import("node:module")).createRequire(import.meta.url);
