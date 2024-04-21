@@ -41,6 +41,7 @@ const RAW_RUNTIME_STATE =
           ["@sapphire/plugin-scheduled-tasks", "npm:10.0.1"],\
           ["@sapphire/plugin-subcommands", "npm:6.0.3"],\
           ["@sapphire/plugin-utilities-store", "npm:2.0.2"],\
+          ["@sapphire/ratelimits", "npm:2.4.9"],\
           ["@sapphire/stopwatch", "npm:1.5.2"],\
           ["@sapphire/time-utilities", "npm:1.7.12"],\
           ["@sapphire/ts-config", "npm:5.0.1"],\
@@ -3002,6 +3003,7 @@ const RAW_RUNTIME_STATE =
           ["@sapphire/plugin-scheduled-tasks", "npm:10.0.1"],\
           ["@sapphire/plugin-subcommands", "npm:6.0.3"],\
           ["@sapphire/plugin-utilities-store", "npm:2.0.2"],\
+          ["@sapphire/ratelimits", "npm:2.4.9"],\
           ["@sapphire/stopwatch", "npm:1.5.2"],\
           ["@sapphire/time-utilities", "npm:1.7.12"],\
           ["@sapphire/ts-config", "npm:5.0.1"],\

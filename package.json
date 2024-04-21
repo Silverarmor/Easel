@@ -33,6 +33,7 @@
     "@sapphire/plugin-scheduled-tasks": "^10.0.1",
     "@sapphire/plugin-subcommands": "^6.0.3",
     "@sapphire/plugin-utilities-store": "^2.0.2",
+    "@sapphire/ratelimits": "^2.4.9",
     "@sapphire/stopwatch": "^1.5.2",
     "@sapphire/time-utilities": "^1.7.12",
     "@yarnpkg/pnpify": "^4.0.1",
