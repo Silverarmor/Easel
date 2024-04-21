@@ -23,7 +23,7 @@ import { DATABASE_ACCESS_ERROR, DATABASE_STORE_SUCCESSFUL, strError, strWarn, st
   ]
 })
 class UnlinkCommand extends Subcommand {
-  registerApplicationCommands (registry: Command.Registry): void {
+  registerApplicationCommands(registry: Command.Registry): void {
     registry.registerChatInputCommand(builder => builder
       .setName(this.name)
       .setDescription(this.description)
@@ -41,14 +41,10 @@ class UnlinkCommand extends Subcommand {
         command
           .setName('panopto')
           .setDescription('Unlink your Panopto account from Easel')
-      ),
-    {
-      idHints: ['1065170308950147092'],
-      behaviorWhenNotIdentical: RegisterBehavior.Overwrite
-    })
+      ))
   }
 
-  async chatInputCalendar (interaction: Command.ChatInputCommandInteraction): Promise<void> {
+  async chatInputCalendar(interaction: Command.ChatInputCommandInteraction): Promise<void> {
     await interaction.deferReply({ ephemeral: true })
 
     const user = await prisma.user.findUnique({
@@ -82,14 +78,14 @@ class UnlinkCommand extends Subcommand {
     })
   }
 
-  async chatInputPanopto (interaction: Command.ChatInputCommandInteraction): Promise<void> {
+  async chatInputPanopto(interaction: Command.ChatInputCommandInteraction): Promise<void> {
     await interaction.reply({
       content: strInfo('This subcommand is still under construction 🚧'),
       ephemeral: true
     })
   }
 
-  async chatInputAll (interaction: Command.ChatInputCommandInteraction): Promise<void> {
+  async chatInputAll(interaction: Command.ChatInputCommandInteraction): Promise<void> {
     await interaction.deferReply({ ephemeral: true })
 
     try {

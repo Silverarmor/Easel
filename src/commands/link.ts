@@ -23,7 +23,7 @@ const LINK_SUCCESSFUL = 'Cool. The service has been linked to Easel successfully
   ]
 })
 export class LinkCommand extends Subcommand {
-  public override registerApplicationCommands (registry: Subcommand.Registry): void {
+  public override registerApplicationCommands(registry: Subcommand.Registry): void {
     registry.registerChatInputCommand((builder) => builder
       .setName(this.name)
       .setDescription(this.description)
@@ -42,14 +42,10 @@ export class LinkCommand extends Subcommand {
         command
           .setName('panopto')
           .setDescription('Link your Panopto account to Easel')
-      ),
-    {
-      idHints: ['1063973473824804875'],
-      behaviorWhenNotIdentical: RegisterBehavior.Overwrite
-    })
+      ))
   }
 
-  public async chatInputCalendar (interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
+  public async chatInputCalendar(interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
     const url = interaction.options.getString('url')
 
     if (url === null) {
@@ -104,14 +100,14 @@ export class LinkCommand extends Subcommand {
     }
   }
 
-  public async chatInputPanopto (interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
+  public async chatInputPanopto(interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
     await interaction.reply({
       content: strInfo('This subcommand is still under construction 🚧'),
       ephemeral: true
     })
   }
 
-  public async canvasCalendarInstructions (interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
+  public async canvasCalendarInstructions(interaction: Subcommand.ChatInputCommandInteraction): Promise<void> {
     const instructions = [
       '**Disclaimer:**',
       'Your iCalendar link is a unique url that allows you to share your calendar with applications like Easel.',
