@@ -32,6 +32,9 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: on-failure:5
+    environment:
+      TZ: Pacific/Auckland
+      NODE_ENV: production
     depends_on:
       - 'easel_postgres'
       - 'easel_redis'

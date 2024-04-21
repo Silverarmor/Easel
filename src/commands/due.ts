@@ -80,8 +80,7 @@ export class DueCommand extends Command {
           })
       })
 
-      const PLACEHOLDER_TEXT = "__**IMPORTANT:\n\nThe times are off by 13 hours, deadlines are due 13 hours BEFORE or AFTER the time shown.**__\nI'll fix this later\n\n"
-      // const PLACEHOLDER_TEXT = ''
+      const PLACEHOLDER_TEXT = "__**IMPORTANT:\n\nThere are some issues with timezones and Canvas does not return due times for some assignments.\nThe times provided here may be inaccurate. Please check Canvas for the correct times.**__\n\n"
       let page = PLACEHOLDER_TEXT
 
       // Split due dates up into pages
