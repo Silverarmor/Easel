@@ -36,6 +36,7 @@
     "@sapphire/ratelimits": "^2.4.9",
     "@sapphire/stopwatch": "^1.5.2",
     "@sapphire/time-utilities": "^1.7.12",
+    "@sapphire/utilities": "^3.15.3",
     "@yarnpkg/pnpify": "^4.0.1",
     "bufferutil": "^4.0.8",
     "discord-api-types": "^0.37.79",
