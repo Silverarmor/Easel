@@ -5,7 +5,7 @@ export default defineConfig({
   entry: ['src/**/*.ts', 'src/**/*.js', '!src/**/*.d.ts'],
   format: ['esm'],
   tsconfig: 'tsconfig.json',
-  target: 'es2020',
+  target: 'esnext',
   esbuildOptions(options, context) {
     options.banner = {
       //https://github.com/evanw/esbuild/issues/1921
