@@ -1,5 +1,4 @@
 {
-  "eslint.packageManager": "yarn",
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
@@ -11,6 +10,5 @@
   ],
   "standard.enableGlobally": true,
   "standard.engine": "ts-standard",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.tsdk": ".yarn/sdks/typescript/lib"
 }
