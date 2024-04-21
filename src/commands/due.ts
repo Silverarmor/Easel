@@ -80,13 +80,13 @@ export class DueCommand extends Command {
           })
       })
 
-      const PLACEHOLDER_TEXT = "__**IMPORTANT:\n\nThere are some issues with timezones and Canvas does not return due times for some assignments.\nThe times provided here may be inaccurate. Please check Canvas for the correct times.**__\n\n"
+      const PLACEHOLDER_TEXT = "__**IMPORTANT:**__\n*There are some issues with timezones and Canvas does not return due times for some assignments.*\n**The times provided here may be inaccurate. Please check Canvas for the correct times.**\n\n"
       let page = PLACEHOLDER_TEXT
 
       // Split due dates up into pages
       for (const event of data) {
         const title = event.url ? `[${event.title}](${event.url})` : event.title
-        const eventText = `**${title}**\n*${event.course}*\n> due <t:${event.timestamp - 13 * 60 * 60}:R> at <t:${event.timestamp - 13 * 60 * 60}:F>\n\n`
+        const eventText = `**${title}**\n*${event.course}*\n> due <t:${event.timestamp}:R> at <t:${event.timestamp}:F>\n\n`
 
         if (page.length + eventText.length > 1500) {
           paginatedMessage.addPageEmbed((embed) => embed.setDescription(page))
