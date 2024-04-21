@@ -13,7 +13,7 @@ export const fetchCalendar = async (url: string): Promise<any> => {
     throw new Error('Invalid Canvas calendar URL')
   }
 
-  const events = await ical.async.fromURL(url)
+  const events = await ical.fromURL(url)
   return events
 }
 
