@@ -19,12 +19,6 @@ export class DueCommand extends Command {
       name: this.name,
       description: this.description
     });
-
-    // Register Context Menu command available from any user
-    registry.registerContextMenuCommand({
-      name: this.name,
-      type: ApplicationCommandType.User
-    });
   }
 
   public async chatInputRun(interaction: Command.ChatInputCommandInteraction): Promise<void> {
