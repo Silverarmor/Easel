@@ -13,7 +13,7 @@ import courses from '../../feeds'
   interval: Time.Minute * 10
 })
 export class FeedCheckTask extends ScheduledTask {
-  async run (): Promise<void> {
+  async run(): Promise<void> {
     this.container.logger.info('FeedCheck: Running')
 
     for (const [courseId, feeds] of Object.entries(courses)) {
@@ -85,7 +85,7 @@ export class FeedCheckTask extends ScheduledTask {
     }
   }
 
-  generateMessage (announcement, previousPosts, contributors): MessagePayload | MessageCreateOptions {
+  generateMessage(announcement, previousPosts, contributors): MessagePayload | MessageCreateOptions {
     const embed = {
       title: announcement.title,
       url: announcement.link,
@@ -111,7 +111,7 @@ export class FeedCheckTask extends ScheduledTask {
       ? '⚠️ A previous announcement was updated'
       : 'A new announcement was posted to Canvas'
 
-    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: ${announcement.title || ''} (<${announcement.link}>)\n*This __won't__ be updated if the announcement is edited; I will try send a new message but this is not guaranteed. Check Canvas for the most up to date content.*`
+    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: ${announcement.title || ''} *(<${announcement.link}>)*\n*This __won't__ be updated if the announcement is edited; I will try send a new message but this is not guaranteed. Check Canvas for the most up to date content.*`
 
     return {
       content: messageContent,
@@ -119,7 +119,7 @@ export class FeedCheckTask extends ScheduledTask {
     }
   }
 
-  generateEditMessage (newMessage: Message, previousMessage: Message): MessagePayload | MessageEditOptions {
+  generateEditMessage(newMessage: Message, previousMessage: Message): MessagePayload | MessageEditOptions {
     let newContent = `🛑 There is a more updated version of this announcement below:\n${newMessage.url}\n\n`
 
     if (!previousMessage.content.includes('🛑')) {
