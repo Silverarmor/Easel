@@ -29,11 +29,10 @@ const turndownService = new TurndownService({
         node.getAttribute('href')
       )
     },
-
     replacement: function (content, node: Node) {
       let href: string = node.getAttribute('href')
       if (href.startsWith('/')) href = `https://${process.env.CANVAS_BASE_URL}${href}`
-      return `*[${content}]: (${href})*`
+      return `[${content}](${href})`
     }
   })
 
@@ -42,7 +41,7 @@ const DESCRIPTION_LIMIT = 4000
 
 const TRUNCATION_WARNING = '...'
 
-export function HTMLtoDiscordMarkdown (html: string): string {
+export function HTMLtoDiscordMarkdown(html: string): string {
   // TODO: Discord isn't able to handle images (need authentication to see img so can't just embed the url)
   // TODO: Discord isn't able to handle URLs to files properly either. Detect and rename or remove
   const markdown = html
@@ -67,7 +66,7 @@ export function HTMLtoDiscordMarkdown (html: string): string {
 
 // By JamesNZL. Function to truncate markdown whilst making sure no bold or italics are chopped off
 // TODO: Maybe get it to work with ` and other characters, however, it shouldn't be essential
-export function truncateMarkdown (
+export function truncateMarkdown(
   markdown,
   descriptionLimit = Math.min(DESCRIPTION_LIMIT, DISCORD_DESCRIPTION_LIMIT)
 ): string {
@@ -136,6 +135,6 @@ export function truncateMarkdown (
   return markdown
 }
 
-function escapeRegExp (string) {
+function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
