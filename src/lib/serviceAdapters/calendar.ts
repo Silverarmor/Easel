@@ -29,7 +29,7 @@ export const formatCalendar = (data: any): any[] => {
     .map((value: any) => {
       const matches = value.summary.match(COURSE_MATCH)
       const pastDue = !(value.end >= Date.now())
-      const timestamp = value.end === value.start ? value.end - Time.Minute : value.end
+      const timestamp = !value?.end?.tz ? value.end - Time.Minute : value.end
 
       return {
         timestamp: Math.floor(timestamp / 1000),
