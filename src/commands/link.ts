@@ -2,7 +2,6 @@ import { Subcommand } from '@sapphire/plugin-subcommands'
 import { prisma } from '../lib/prisma'
 import { validateCalendarUrl } from '../lib/serviceAdapters/calendar'
 import { DATABASE_ACCESS_ERROR, strError, strSuccess, strInfo } from '../lib/constants'
-import { RegisterBehavior } from '@sapphire/framework'
 import { ApplyOptions } from '@sapphire/decorators'
 
 const LINK_SUCCESSFUL = 'Cool. The service has been linked to Easel successfully.'

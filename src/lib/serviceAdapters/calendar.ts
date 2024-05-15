@@ -28,14 +28,15 @@ export const formatCalendar = (data: any): any[] => {
     })
     .map((value: any) => {
       const matches = value.summary.match(COURSE_MATCH)
-      const due = !(value.end >= Date.now())
+      const pastDue = !(value.end >= Date.now())
+      const timestamp = value.end === value.start ? value.end - Time.Minute : value.end
 
       return {
-        timestamp: Math.floor(value.end / 1000),
-        course: `${due ? '~~' : ''}${matches ? matches[1] : 'Unknown course'
-          }${due ? '~~' : ''}`,
-        title: `${due ? '~~' : ''}${value.summary.replace(COURSE_MATCH, '') ?? 'Event has no summary'
-          }${due ? '~~' : ''}`,
+        timestamp: Math.floor(timestamp / 1000),
+        course: `${pastDue ? '~~' : ''}${matches ? matches[1] : 'Unknown course'
+          }${pastDue ? '~~' : ''}`,
+        title: `${pastDue ? '~~' : ''}${value.summary.replace(COURSE_MATCH, '') ?? 'Event has no summary'
+          }${pastDue ? '~~' : ''}`,
         content: value.description ?? 'Event has no description',
         url: value?.url?.val
       }
