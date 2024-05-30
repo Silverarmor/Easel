@@ -111,7 +111,7 @@ export class FeedCheckTask extends ScheduledTask {
       ? '⚠️ A previous announcement was updated'
       : 'A new announcement was posted to Canvas'
 
-    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: ${announcement.title || ''} *(<${announcement.link}>)*\n*This __won't__ be updated if the announcement is edited; I will try send a new message but this is not guaranteed. Check Canvas for the most up to date content.*`
+    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: [${announcement.title || ''}](${announcement.link})*\n*This __won't__ be updated if the announcement is edited; I will try send a new message but this is not guaranteed. Check Canvas for the most up to date content.*`
 
     return {
       content: messageContent,
