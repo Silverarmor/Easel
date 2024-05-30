@@ -108,10 +108,10 @@ export class FeedCheckTask extends ScheduledTask {
     }
 
     const messageContentHeader = previousPosts.length
-      ? '⚠️ A previous announcement was updated'
+      ? '⚠️ A previous announcement was edited'
       : 'A new announcement was posted to Canvas'
 
-    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: [${announcement.title || ''}](${announcement.link})*\n*This __won't__ be updated if the announcement is edited; I will try send a new message but this is not guaranteed. Check Canvas for the most up to date content.*`
+    const messageContent = `**${messageContentHeader}** <t:${Date.parse(announcement.updated || announcement.published) / 1000}:R>: [${announcement.title || ''}](${announcement.link})`
 
     return {
       content: messageContent,
@@ -120,10 +120,10 @@ export class FeedCheckTask extends ScheduledTask {
   }
 
   generateEditMessage(newMessage: Message, previousMessage: Message): MessagePayload | MessageEditOptions {
-    let newContent = `🛑 There is a more updated version of this announcement below:\n${newMessage.url}\n\n`
+    let newContent = `🛑 This announcement has been edited. See latest version below: ${newMessage.url}\n\n`
 
     if (!previousMessage.content.includes('🛑')) {
-      newContent += '🛑 The content of this announcement is now __outdated__.\n'
+      newContent += '🛑 The contents of this message are now __outdated__.\n'
     }
 
     newContent += previousMessage.content
