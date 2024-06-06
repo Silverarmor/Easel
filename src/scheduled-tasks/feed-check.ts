@@ -10,7 +10,7 @@ import courses from '../../feeds'
 
 @ApplyOptions<ScheduledTask.Options>({
   name: 'feed-check',
-  interval: Time.Minute * 10
+  interval: Time.Minute * 5
 })
 export class FeedCheckTask extends ScheduledTask {
   async run(): Promise<void> {
@@ -53,12 +53,18 @@ export class FeedCheckTask extends ScheduledTask {
               let newMessage
               const messageContent = this.generateMessage(announcement, previousPosts, contributors)
 
-              // Reply to the previous message if there is a previous message
-              let previousMessage = await guildChannel.messages.fetch(previousPosts[0].messageId).catch(_ => { return null; })
-              if (previousPosts.length > 0 && previousMessage !== null) {
-                newMessage = await previousMessage.reply(messageContent)
+              // Try to reply to the previous message if there is a previous message
+              let previousMessage, hasPreviousMessage = false;
+              if (previousPosts.length > 0) {
+                previousMessage = await guildChannel.messages.fetch(previousPosts[0].messageId).catch(_ => { return null; })
+
+                hasPreviousMessage = (previousMessage !== null);
+              }
+
+              if (hasPreviousMessage) {
+                newMessage = await previousMessage!.reply(messageContent);
               } else {
-                newMessage = await guildChannel.send(messageContent)
+                newMessage = await guildChannel.send(messageContent);
               }
 
               await prisma.broadcast.create({
