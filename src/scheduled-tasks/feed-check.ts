@@ -53,9 +53,9 @@ export class FeedCheckTask extends ScheduledTask {
               let newMessage
               const messageContent = this.generateMessage(announcement, previousPosts, contributors)
 
-              if (previousPosts.length > 0) {
-                // Reply to the previous message if there is a previous message
-                const previousMessage = await guildChannel.messages.fetch(previousPosts[0].messageId)
+              // Reply to the previous message if there is a previous message
+              let previousMessage = await guildChannel.messages.fetch(previousPosts[0].messageId).catch(_ => { return null; })
+              if (previousPosts.length > 0 && previousMessage !== null) {
                 newMessage = await previousMessage.reply(messageContent)
               } else {
                 newMessage = await guildChannel.send(messageContent)
