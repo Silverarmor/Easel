@@ -1,10 +1,10 @@
 import { ApplyOptions } from '@sapphire/decorators'
 import { prisma } from '../lib/prisma'
-import { Command, RegisterBehavior } from '@sapphire/framework'
+import { Command } from '@sapphire/framework'
 import { fetchCalendar, formatCalendar } from '../lib/serviceAdapters/calendar'
 import { PaginatedMessage } from '@sapphire/discord.js-utilities'
 
-import { ApplicationCommandType, EmbedBuilder, PermissionFlagsBits } from 'discord.js'
+import { EmbedBuilder, PermissionFlagsBits } from 'discord.js'
 import { DATABASE_ACCESS_ERROR, strError, strWarn } from '../lib/constants'
 
 @ApplyOptions<Command.Options>({
@@ -73,14 +73,14 @@ export class DueCommand extends Command {
             name: interaction.user.username,
             iconURL: interaction.user.displayAvatarURL()
           })
-          .setTitle('Due Dates')
+          .setTitle('Canvas Due Dates')
           .setFooter({
-            iconURL: this.container.client.user.displayAvatarURL(),
-            text: 'Please do not solely rely on this to keep track of due dates.'
+            iconURL: this.container.client.user?.displayAvatarURL(),
+            text: "Deadlines are from Canvas"
           })
       })
 
-      const PLACEHOLDER_TEXT = "__**IMPORTANT:**__\n*There are some issues with timezones and Canvas does not return due times for some assignments.*\n**The times provided here may be inaccurate. Please check Canvas for the correct times.**\n\n"
+      const PLACEHOLDER_TEXT = "*There may be issues with times returned from Canvas. Please check Canvas for the correct times.*\n\n"
       let page = PLACEHOLDER_TEXT
 
       // Split due dates up into pages
@@ -99,7 +99,7 @@ export class DueCommand extends Command {
       // Add a placeholder warning if there are no due dates
       if (data.length === 0) {
         page = [
-          'It appears that there are no upcoming due dates at this time.',
+          'It appears that there are no upcoming due dates at this time. It may be a good opportunity to touch grass now.',
           '',
           'However, we advise you to check your [calender on Canvas](https://canvas.auckland.ac.nz/calendar) to confirm this and to check other platforms for any additional deadlines.'
         ].join('\n')
